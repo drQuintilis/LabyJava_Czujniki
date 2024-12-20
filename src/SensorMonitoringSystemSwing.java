@@ -23,7 +23,7 @@ public class SensorMonitoringSystemSwing extends JFrame {
     private final JTextArea humidityArea = new JTextArea();
     private final JTextArea pressureArea = new JTextArea();
 
-    // pola do wyświetlania ostatniego odczytu z czujników
+    // etykiety do wyświetlania ostatniego odczytu z czujników
     private final JLabel temperatureLastValue = new JLabel("Ostatni pomiar: --");
     private final JLabel humidityLastValue = new JLabel("Ostatni pomiar: --");
     private final JLabel pressureLastValue = new JLabel("Ostatni pomiar: --");
@@ -122,9 +122,12 @@ public class SensorMonitoringSystemSwing extends JFrame {
         running.set(true);
 
         // Tworzymy nowe wątki, które symulują odczyty z czujników i przyjmują burofy do przechowywania wyników
-        new Thread(() -> simulateSensor(temperatureBuffer, -40, 40, 1000, temperatureArea, temperatureLastValue, "temperature")).start();
-        new Thread(() -> simulateSensor(humidityBuffer, 0, 100, 1500, humidityArea, humidityLastValue, "humidity")).start();
-        new Thread(() -> simulateSensor(pressureBuffer, 900, 1100, 2000, pressureArea, pressureLastValue, "pressure")).start();
+        new Thread(() -> simulateSensor(temperatureBuffer, -40, 40, 1000, temperatureArea,
+                temperatureLastValue, "temperature")).start();
+        new Thread(() -> simulateSensor(humidityBuffer, 0, 100, 1500, humidityArea,
+                humidityLastValue, "humidity")).start();
+        new Thread(() -> simulateSensor(pressureBuffer, 900, 1100, 2000, pressureArea,
+                pressureLastValue, "pressure")).start();
     }
 
     //Po kliknięciu przycisku Stop, zmienna running jest ustawiana na false, żeby wątki się zatrzymały
@@ -214,6 +217,7 @@ public class SensorMonitoringSystemSwing extends JFrame {
 
 
     public static void main(String[] args) {
+        // Uruchamiamy aplikację w wątku obsługującym interfejs graficzny
         SwingUtilities.invokeLater(() -> {
             SensorMonitoringSystemSwing frame = new SensorMonitoringSystemSwing();
             frame.setVisible(true);
@@ -221,6 +225,7 @@ public class SensorMonitoringSystemSwing extends JFrame {
     }
 }
 
+// clasa reprezentuje pojedynczy odczyt z czujnika
 class SensorData {
     private final int number;
     private final double value;
