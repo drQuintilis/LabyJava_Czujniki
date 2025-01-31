@@ -215,31 +215,4 @@ public class SensorMonitoringSystemSwing extends JFrame {
         });
     }
 
-
-    public static void main(String[] args) {
-        // Uruchamiamy aplikację w wątku obsługującym interfejs graficzny
-        SwingUtilities.invokeLater(() -> {
-            SensorMonitoringSystemSwing frame = new SensorMonitoringSystemSwing();
-            frame.setVisible(true);
-        });
-    }
-}
-
-// clasa reprezentuje pojedynczy odczyt z czujnika
-class SensorData {
-    private final int number;
-    private final double value;
-
-    public SensorData(int number, double value) {
-        this.number = number;
-        this.value = value;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public double getValue() {
-        return value;
-    }
 }
